@@ -1,6 +1,5 @@
 import os
 import glob
-import shutil
 lst = []
 ruta = "/Users/Einar/Downloads/"
 files = glob.glob("" + ruta + "*.*")
@@ -39,19 +38,19 @@ def dirs():
                 if z == "INI":
                     print()
                 else:
-                    shutil.move(ruta+splitear2(x),ruta+z+"/"+splitear2(x))
+                    try:
+                        os.rename((ruta+splitear2(x)), (ruta+z+"/"+splitear2(x)))
+                    except:
+                        print("owo")
             else:
                 
-                os.makedirs("" + ruta + "" +z+"", exist_ok=True)
+                os.makedirs((ruta +z), exist_ok=True)
                 lst.append(z)
                 for y in files:
                     if splitear(splitear2(y)).upper() == z:
-                        shutil.move(""+ruta+""+splitear2(y)+"",""+ruta+""+z+"/"+splitear2(y)+"")
+                        os.rename((ruta+splitear2(y)), (ruta+z+"/"+splitear2(y)))
                         #print("que onda")
                     else:
                         print()
-                    
-#Execute
-
 dirs()
 
