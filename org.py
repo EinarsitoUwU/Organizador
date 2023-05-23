@@ -1,11 +1,8 @@
 import os
 import glob
+with open("./ruta.txt") as archivo:
+    v = archivo.readlines()
 lst = []
-ruta = "/Users/Einar/Downloads/"
-files = glob.glob("" + ruta + "*.*")
-print(files)
-
-
 def splitear(cadena):
     u = cadena.split(".")
     a = u[1]
@@ -31,7 +28,7 @@ def dirs():
             u = splitear(x)
             z = u.upper()
             print(z)
-            
+
             test = os.path.exists(ruta+z)
             if  test == True or z == "INI":
                 #print("ya existe")
@@ -43,7 +40,7 @@ def dirs():
                     except:
                         print("owo")
             else:
-                
+
                 os.makedirs((ruta +z), exist_ok=True)
                 lst.append(z)
                 for y in files:
@@ -52,5 +49,10 @@ def dirs():
                         #print("que onda")
                     else:
                         print()
-dirs()
 
+for k in v:
+    ruta = k.strip()
+    files = glob.glob("" + ruta + "*.*")
+    print(files)
+    dirs()
+exit()
